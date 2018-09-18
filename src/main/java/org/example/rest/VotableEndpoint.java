@@ -105,7 +105,15 @@ public class VotableEndpoint {
 		if (em.find(Votable.class, id) == null) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
+		TypedQuery<Votable> findByIdQuery = em
+				.createQuery(
+						"SELECT DISTINCT v FROM Votable v WHERE v.id = :entityId ORDER BY v.id",
+						Votable.class);
+
 		try {
+			findByIdQuery.setParameter("entityId", entity.getId());
+			Votable oldEntity = findByIdQuery.getSingleResult();
+			entity.setVersion(oldEntity.getVersion());
 			entity = em.merge(entity);
 		} catch (OptimisticLockException e) {
 			return Response.status(Response.Status.CONFLICT)

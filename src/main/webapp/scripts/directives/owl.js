@@ -4,25 +4,13 @@ angular
 
 		var linker = function ( scope, element, attr) {
 
-			scope.owlInit = function (element) {
+			$timeout(function () {
 
-				$timeout(function () {
+                scope.owl = element.owlCarousel({items:1,center:true,loop:true}).data();
 
-					scope.owl = element.owlCarousel(mergeOptions).data();
+                scope.current = scope.owl['owl.carousel']._current;
 
-					scope.current = scope.owl['owl.carousel']._current;
-
-					if (scrollOnInit) {
-
-						scrollOnInit(scope)();
-
-					}
-
-					$rootScope.$broadcast('owl.initialised', element);
-
-				}, 250);
-
-			};
+            }, 250);
 
 			scope.previous = function previous() {
 
@@ -49,5 +37,4 @@ angular
 			scope : true,
 			link: linker
 		};
-	}
-}
+	});

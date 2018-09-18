@@ -1,13 +1,11 @@
-<h2>
-    <span class="glyphicon glyphicon-check"></span> Your application is running.
-</h2>
-<p>
-    <a target="_blank"
-        href="http://forge.jboss.org/docs/index.html">Documentation</a>
-    | <a target="_blank"
-        href="http://twitter.com/intent/tweet?text=I+just+built+and+deployed+a+webapp+using+%23Forge,+from+%23JBoss+-+Super+easy!+(+http://jboss.org/forge+)&via=JBossForge">Get Excited!</a><br /> <a target="_blank" href="http://jboss.org/forge"><br />
-        Forge Project</a> | <a target="_blank"
-        href="https://community.jboss.org/en/forge">User
-        Forums</a> | <a target="_blank"
-        href="https://issues.jboss.org/browse/FORGEPLUGINS">Report an issue</a>
-</p>
+<div ng-if="!filteredResults || filteredResults.length == 0">
+    <span>Nothing to show yet. Please add something here <a class="btn btn-primary" href="#/Votables/new">Votables</a></span>
+</div>
+<div ng-if="filteredResults && filteredResults.length > 0" owl class="owl-carousel owl-theme">
+    <div class="slide" ng-repeat="result in filteredResults">
+        <div class="votes">{{result.votes}}</div>
+        <div class="title">{{result.title}}</div>
+        <img ng-src="{{result.imageURL}}" style="width: 740px" />
+        <button class="btn btn-primary upvote" ng-click="upvote(result)">Upvote</button>
+    </div>
+</div>

@@ -4,6 +4,9 @@
         <div class="col-md-offset-2 col-sm-2">
             <a id="Create" name="Create" class="btn btn-primary" href="#/Votables/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
         </div>
+        <div class="col-md-offset-4 col-sm-2">
+            <a id="Done" name="Done" class="btn btn-primary" href="#/">Done</a>
+        </div>
     </div>
 </div>
 <hr/>
@@ -65,7 +68,7 @@
                 <tr ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
                     <td><a href="#/Votables/edit/{{result.id}}">{{result.votes}}</a></td>
                     <td><a href="#/Votables/edit/{{result.id}}">{{result.title}}</a></td>
-                    <td><a href="#/Votables/edit/{{result.id}}">{{result.imageURL}}</a></td>
+                    <td><img src="{{result.imageURL}}" style="width: 167px" /></td>
                     <td><a href="#/Votables/edit/{{result.id}}">{{result.type}}</a></td>
                 </tr>
             </tbody>

@@ -1,0 +1,21 @@
+.slide {
+    text-align: center;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.votes {
+    position: absolute;
+    top: 225px;
+    left: 50%;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.upvote {
+    margin-top: 10px;
+}
