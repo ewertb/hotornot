@@ -1,0 +1,47 @@
+<header ng-switch on="$location.path().indexOf('/Votables/new') > -1">
+    <h3 ng-switch-when="true">Create a new Votable</h3>
+    <h3 ng-switch-when="false">View or edit Votable</h3>
+</header>
+<form id="VotableForm" name="VotableForm" class="form-horizontal" role="form">
+    
+
+    <div class="form-group" ng-class="{'has-error': VotableForm.votes.$invalid}">
+        <label for="votes" class="col-sm-2 control-label">Votes</label>
+        <div id="votesControls" class="col-sm-10">
+            <input id="votes" name="votes" type="number" class="form-control" ng-model="votable.votes" placeholder="Enter the Votable Votes"></input>
+            <span class="help-block error" ng-show="VotableForm.votes.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': VotableForm.title.$invalid}">
+        <label for="title" class="col-sm-2 control-label">Title</label>
+        <div id="titleControls" class="col-sm-10">
+            <input id="title" name="title" type="text" class="form-control" ng-model="votable.title" placeholder="Enter the Votable Title"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': VotableForm.imageURL.$invalid}">
+        <label for="imageURL" class="col-sm-2 control-label">Image URL</label>
+        <div id="imageURLControls" class="col-sm-10">
+            <input id="imageURL" name="imageURL" type="text" class="form-control" ng-model="votable.imageURL" placeholder="Enter the Votable Image URL"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': VotableForm.type.$invalid}">
+        <label for="type" class="col-sm-2 control-label">Type</label>
+        <div id="typeControls" class="col-sm-10">
+        <select id="type" name="type" class="form-control" ng-model="votable.type" ng-options="t for t in typeList"  >
+            <option value="">Choose a Type</option>
+        </select>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveVotable" name="saveVotable" class="btn btn-primary" ng-disabled="isClean() || VotableForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteVotable" name="deleteVotable" class="btn btn-danger" ng-show="votable.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>
